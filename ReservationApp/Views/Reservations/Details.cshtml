@@ -1,0 +1,60 @@
+﻿@model ReservationApp.Models.Reservation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservation</h4>
+    <hr />
+    <dl>
+        <dt>
+            Client First Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model=>model.Client.FirstName)
+        </dd>
+        <dt>
+           Client Last Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.LastName)
+        </dd>
+        <dt>
+            Employee First Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model=>model.Employee.FirstName)
+        </dd>
+        <dt>
+           Employee Last Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+           @Html.ValueFor(model=>Model.Date, "{0:dd/mm/yyyy}")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.ValueFor(model => model.Time, "{0:hh:ss tt}")
+        </dd> 
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReservationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

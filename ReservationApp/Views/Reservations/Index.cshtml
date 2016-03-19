@@ -1,0 +1,76 @@
+﻿<!--
+ 
+//author Jacob Johnson
+//version 1.0
+      
+This is main Index file for my ASP.NET Project. In this project I have used the ASP.NET MVC Model, utilizing the Entity Framework in order to 
+design a functional database for the backend. This framework is migration enabled, and as such is able to be modified without complete deltion of 
+pre-existing data records. 
+
+Credit is due to www.asp.net for providing excellent tutorials and information covering all aspects of ASP.NET
+-->
+
+
+
+@model IEnumerable<ReservationApp.Models.Reservation>
+
+@{
+    ViewBag.Title = "Reservations";
+}
+
+<h2>Reservations</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Client Last Name", "Index", new { sortOrder = ViewBag.ClientName })
+        </th>
+        <th>
+            @Html.ActionLink("Employee Last Name", "Index", new { sortOrder = ViewBag.EmployeeName })
+        </th>
+        <th>
+           @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DSortParm})
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.LastName)
+            </td>
+            <td>
+                @Html.ValueFor(modelItem => item.Date, "{0:dd/MM/yyyy}")
+            </td>
+            <td>
+                @Html.ValueFor(modelItem => item.Time, "{0:hh:ss tt}")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ReservationID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ReservationID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ReservationID })
+            </td>
+        </tr>
+    }
+
+</table>
